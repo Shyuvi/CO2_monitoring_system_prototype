@@ -28,8 +28,7 @@ Open the `.ino` file and configure the following lines before uploading:
 | Line | Variable | Description |
 |------|-----------|-------------|
 | **92–93** | `RX_PIN`, `TX_PIN` | UART pin numbers connected to the sensor.<br>Default: `RX_PIN=7`, `TX_PIN=6`.<br>Change according to your wiring. |
-| **96–98** | `ssid`, `password`, `serverUrl` | Your Wi-Fi credentials and target server URL.<br>Example:  |
-|  |  | ```cpp<br>const char* ssid = "MyWiFi";<br>const char* password = "MyPass";<br>const char* serverUrl = "http://192.168.0.10:5000/upload";<br>``` |
+| **96–98** | `ssid`, `password`, `serverUrl` | Your Wi-Fi credentials and target server URL.<br>Example: ```cpp<br>const char* ssid = "MyWiFi";<br>const char* password = "MyPass";<br>const char* serverUrl = "http://192.168.0.10:5000/upload";<br>``` |
 
 > 💡 **Note:** Ensure that the server is running on the same local network.
 
