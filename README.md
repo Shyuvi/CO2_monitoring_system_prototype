@@ -20,7 +20,7 @@ This project provides:
 | Component | Model | Description |
 |------------|--------|-------------|
 | **MCU Board** | ESP32-S3 DevKitC-1 | Dual-core Wi-Fi/BLE microcontroller board (3.3 V logic) |
-| **CO₂ Sensor** | SprintIR-6S (GSS) | High-speed NDIR CO₂ sensor, UART 9600-8N1, 3.3 V logic |
+| **CO₂ Sensor** | [SprintIR-6S (GSS)](https://sensorsandpower.angst-pfister.com/fileadmin/products/datasheets/188/SprintIR6S_1620-21536-0006-E-0518.pdf) | High-speed NDIR CO₂ sensor, UART 9600-8N1, 3.3 V logic |
 | **Power Supply** | 3.3 V | Both MCU and sensor must share GND and 3.3 V rail |
 | **Interface** | UART (TTL) | RX/TX serial communication between ESP32 and sensor |
 
