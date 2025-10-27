@@ -93,9 +93,9 @@ static const uint8_t SENSOR_RX_PIN = 16; // ESP32-S3 RX (센서 TX_Out 연결)
 static const uint8_t SENSOR_TX_PIN = 17; // ESP32-S3 TX (센서 RX_In  연결)
 
 // ====== WiFi 및 서버 설정 ======
-const char *ssid = "admin";
-const char *password = "12345678";
-const char *serverUrl = "http://192.168.0.98:65198/co2_data";
+const char *ssid = ""; // WiFi name
+const char *password = ""; // WiFi Password
+const char *serverUrl = "http://{server_IP}:{server_port}/co2_data";
 
 // ====== UART 인스턴스 ======
 HardwareSerial CO2(1);
@@ -118,36 +118,6 @@ volatile bool batchDropped = false;
 volatile bool buffer_ready = false; // 새로운 플래그
 
 TaskHandle_t sendingTaskHandle = NULL;
-/*
-// ====== 센서 라인 처리 ======
-void handleLine(const String &ln){
-    String s = ln;
-    s.trim();
-    if (s.length() <= 1) return;
-
-    if (s[0] == 'Z' || s[0] == 'z') {
-        if (active_buffer_index < BATCH_SIZE) {
-            active_buffer[active_buffer_index] = s;
-            active_buffer_index++;
-        }
-
-        if (active_buffer_index >= BATCH_SIZE) {
-            if (!buffer_ready) {
-                send_buffer = active_buffer;
-                active_buffer = (active_buffer == z_buffer_A) ? z_buffer_B : z_buffer_A;
-                buffer_ready = true; // 플래그 설정
-                Serial.println("[BATCH] Buffer full, switching.");
-            }
-            else {
-                Serial.println("[WARN] Dropping batch!");
-                batchDropped = true;
-            }
-            
-            active_buffer_index = 0;
-        }
-    }
-}
-*/
 
 // ====== 평균 버퍼 ======
 const size_t AVG_WINDOW = 4;
@@ -221,7 +191,6 @@ void sendCmd(const char *s)
 
 void forceStreamingMode() { 
     sendCmd("K 1"); // 20Hz 스트리밍 모드
-    // sendCmd("K 2"); // 5Hz 스트리밍 모드
 }
 
 void kickStart() { 
