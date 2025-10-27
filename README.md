@@ -1,7 +1,7 @@
 # CO₂ Sensor ESP32 System
 
 ## 🧭 Abstract
-This project implements a real-time CO₂ sensing and monitoring system using an **ESP32-S3** and a **SprintIR-6S** sensor.  
+This project implements a real-time CO₂ sensing and monitoring system using an **ESP32-S3 DevKitC-1** board and a **SprintIR-6S CO₂ sensor**.  
 The ESP32 reads CO₂ concentration via UART and sends data to a Python server over Wi-Fi.  
 The server visualizes or stores the readings for further analysis.
 
@@ -13,6 +13,16 @@ This project provides:
 - A lightweight firmware for ESP32-S3 to stream CO₂ data.
 - A simple Python server (`run.py`) to receive and display or log the incoming data.
 - Easy configuration for network and serial settings.
+
+---
+
+### 🧠 Hardware Overview
+| Component | Model | Description |
+|------------|--------|-------------|
+| **MCU Board** | ESP32-S3 DevKitC-1 | Dual-core Wi-Fi/BLE microcontroller board (3.3 V logic) |
+| **CO₂ Sensor** | SprintIR-6S (GSS) | High-speed NDIR CO₂ sensor, UART 9600-8N1, 3.3 V logic |
+| **Power Supply** | 3.3 V | Both MCU and sensor must share GND and 3.3 V rail |
+| **Interface** | UART (TTL) | RX/TX serial communication between ESP32 and sensor |
 
 ---
 
@@ -28,7 +38,7 @@ Open the `.ino` file and configure the following lines before uploading:
 | Line | Variable | Description |
 |------|-----------|-------------|
 | **92–93** | `RX_PIN`, `TX_PIN` | UART pin numbers connected to the sensor.<br>Default: `RX_PIN=7`, `TX_PIN=6`.<br>Change according to your wiring. |
-| **96–98** | `ssid`, `password`, `serverUrl` | Your Wi-Fi credentials and target server URL.<br>Example:```const char* ssid = "MyWiFi";\nconst char* password = "MyPass";\nconst char* serverUrl = "http://192.168.0.10:5000/upload";``` |
+| **96–98** | `ssid`, `password`, `serverUrl` | Your Wi-Fi credentials and target server URL.<br>Example:<br>`const char* ssid = "MyWiFi";`<br>`const char* password = "MyPass";`<br>`const char* serverUrl = "http://192.168.0.10:5000/upload";` |
 
 > 💡 **Note:** Ensure that the server is running on the same local network.
 
