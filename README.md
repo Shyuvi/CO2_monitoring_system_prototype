@@ -28,7 +28,8 @@ Open the `.ino` file and configure the following lines before uploading:
 | Line | Variable | Description |
 |------|-----------|-------------|
 | **92–93** | `RX_PIN`, `TX_PIN` | UART pin numbers connected to the sensor.<br>Default: `RX_PIN=7`, `TX_PIN=6`.<br>Change according to your wiring. |
-| **96–98** | `ssid`, `password`, `serverUrl` | Your Wi-Fi credentials and target server URL.<br>Example: ```cpp<br>const char* ssid = "MyWiFi";<br>const char* password = "MyPass";<br>const char* serverUrl = "http://192.168.0.10:5000/upload";<br>``` |
+| **96–98** | `ssid`, `password`, `serverUrl` | Your Wi-Fi credentials and target server URL.<br>Example:
+```const char* ssid = "MyWiFi";const char* password = "MyPass";const char* serverUrl = "http://192.168.0.10:5000/upload";``` |
 
 > 💡 **Note:** Ensure that the server is running on the same local network.
 
@@ -36,3 +37,27 @@ Open the `.ino` file and configure the following lines before uploading:
 1. Select your board: **ESP32-S3 Dev Module** (or equivalent)  
 2. Upload the `.ino` file through Arduino IDE or PlatformIO.  
 3. Open Serial Monitor at **115200 bps** to confirm:
+
+4. Verify real-time CO₂ readings being transmitted.
+
+---
+
+### 2️⃣ Python Server (`run.py`)
+This server receives and processes the CO₂ data from ESP32.
+
+#### 🧩 User-editable lines
+Open `run.py` and modify:
+
+| Line | Variable | Type | Description |
+|------|-----------|------|-------------|
+| **457** | `ip` | `str` | The IP address to bind the server (e.g., `"0.0.0.0"` or `"192.168.0.10"`) |
+| **458** | `port` | `int` | The port number for the server (e.g., `5000`) |
+
+#### ▶️ How to Run
+```bash
+# 1. Install dependencies (if any)
+pip install flask requests
+
+# 2. Start the server
+python run.py
+
